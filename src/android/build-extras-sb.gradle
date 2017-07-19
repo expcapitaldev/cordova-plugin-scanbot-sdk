@@ -14,5 +14,8 @@ android {
         exclude 'META-INF/NOTICE.txt'
         exclude 'META-INF/NOTICE'
         exclude 'META-INF/DEPENDENCIES'
+    },
+    dexOptions {
+        jumboMode true
     }
 }
