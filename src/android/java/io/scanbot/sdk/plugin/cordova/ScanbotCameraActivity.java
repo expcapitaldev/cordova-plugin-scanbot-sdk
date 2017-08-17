@@ -58,6 +58,8 @@ public class ScanbotCameraActivity extends AppCompatActivity implements PictureC
     private static final float TAKE_PICTURE_PRESSED_SCALE = 0.8f;
     private static final float TAKE_PICTURE_OVERSHOOT_TENSION = 8f;
 
+    private static final long CAMERA_OPEN_DELAY_MS = 300L;
+
     private final Executor executor = Executors.newSingleThreadExecutor();
 
     private ScanbotSdkWrapper sdkWrapper;
@@ -215,12 +217,12 @@ public class ScanbotCameraActivity extends AppCompatActivity implements PictureC
         cameraView.setCameraOpenCallback(new CameraOpenCallback() {
             @Override
             public void onCameraOpened() {
-                cameraView.post(new Runnable() {
+                cameraView.postDelayed(new Runnable() {
                     @Override
                     public void run() {
                         cameraView.continuousFocus();
                     }
-                });
+                }, CAMERA_OPEN_DELAY_MS);
             }
         });
 
@@ -272,6 +274,8 @@ public class ScanbotCameraActivity extends AppCompatActivity implements PictureC
     protected void onPause() {
         super.onPause();
         cameraView.onPause();
+        
+        resetUserGuidanceUi(true);
     }
 
     @Override

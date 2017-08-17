@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <plugin xmlns="http://apache.org/cordova/ns/plugins/1.0"
         xmlns:android="http://schemas.android.com/apk/res/android"
-        id="cordova-plugin-scanbot-sdk" version="1.2.1">
+        id="cordova-plugin-scanbot-sdk" version="1.2.4">
 
   <name>Scanbot SDK Cordova Plugin</name>
   <description>Cordova Plugin for Scanbot SDK</description>
@@ -27,6 +27,10 @@
         <param name="android-package" value="io.scanbot.sdk.plugin.cordova.ScanbotCameraPlugin"/>
       </feature>
     </config-file>
+
+    <edit-config file="AndroidManifest.xml" target="/manifest/application" mode="merge">
+      <application android:largeHeap="true" />
+    </edit-config>
 
     <config-file target="AndroidManifest.xml" parent="/manifest/application">
       <activity android:name="io.scanbot.sdk.plugin.cordova.ScanbotCameraActivity"
@@ -139,8 +143,8 @@
     <framework src="src/android/build-extras-sb.gradle" custom="true" type="gradleReference" />
 
     <!-- Dependencies (libs, frameworks, etc): -->
-    <framework src="io.scanbot:sdk-package-2:1.22.6" />
-    <framework src="com.android.support:appcompat-v7:24+" />
+    <framework src="io.scanbot:sdk-package-2:1.23.3" />
+    <framework src="com.android.support:appcompat-v7:24.2.0" />
   </platform>
 
 

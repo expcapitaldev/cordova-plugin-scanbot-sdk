@@ -186,10 +186,11 @@
 
 - (void)scannerController:(SBSDKScannerViewController *)controller didFailCapturingImage:(NSError *)error {
     if (self.commandDelegate && self.command) {
-        CDVPluginResult *pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_ERROR messageAsString:error.localizedDescription];
-        [self.commandDelegate sendPluginResult:pluginResult
-                                    callbackId:self.command.callbackId];
-        [self dismissViewControllerAnimated:YES completion:nil];
+        [self dismissViewControllerAnimated:YES completion:^{
+            CDVPluginResult *pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_ERROR messageAsString:error.localizedDescription];
+            [self.commandDelegate sendPluginResult:pluginResult
+                                        callbackId:self.command.callbackId];
+        }];
     }
 }
 
@@ -216,9 +217,10 @@
             pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_ERROR
                                              messageAsString:@"Error writing image file."];
         }
-        [self.commandDelegate sendPluginResult:pluginResult
-                                    callbackId:self.command.callbackId];
-        [self dismissViewControllerAnimated:YES completion:nil];
+        [self dismissViewControllerAnimated:YES completion:^{
+            [self.commandDelegate sendPluginResult:pluginResult
+                                        callbackId:self.command.callbackId];
+        }];
     }
 }
 
