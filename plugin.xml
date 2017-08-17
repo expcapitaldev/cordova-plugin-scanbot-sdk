@@ -144,7 +144,6 @@
 
     <!-- Dependencies (libs, frameworks, etc): -->
     <framework src="io.scanbot:sdk-package-2:1.23.3" />
-    <framework src="com.android.support:appcompat-v7:25.3.1" />
   </platform>
 
 
