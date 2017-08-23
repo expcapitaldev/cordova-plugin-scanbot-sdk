@@ -27,11 +27,4 @@
  */
 @property(nonatomic, assign) SBSDKScannerStatus scannerStatus;
 
-@property(nonatomic, strong) UIColor *buttonSearchingColor UI_APPEARANCE_SELECTOR;
-
-@property(nonatomic, strong) UIColor *buttonDetectedColor UI_APPEARANCE_SELECTOR;
-
-@property(nonatomic, strong) UIColor *indicatorColor UI_APPEARANCE_SELECTOR;
-
 @end
-

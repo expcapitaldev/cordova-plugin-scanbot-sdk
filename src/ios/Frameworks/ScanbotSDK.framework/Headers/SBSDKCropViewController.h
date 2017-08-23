@@ -15,7 +15,7 @@
  * A delegate protocol to inform an object about changes in SBSDKCropViewController.
  */
 @protocol SBSDKCropViewControllerDelegate <NSObject>
-@optional
+@required
 
 /**
  * Informs the delegate that the crop view controllers apply button was hit.
@@ -34,12 +34,7 @@ didApplyChangesWithPolygon:(nonnull SBSDKPolygon *)polygon
  */
 - (void)cropViewControllerDidCancelChanges:(nonnull SBSDKCropViewController *)cropViewController;
 
-/**
- * Informs the delegate that the crop view controllers polygon was changed.
- * @param cropViewController The calling SBSDKCropViewController.
- */
-- (void)cropViewControllerDidChangePolygon:(nonnull SBSDKCropViewController *)cropViewController;
-
+@optional
 
 /**
  * Asks the delegate for the cancel buttons icon.
@@ -96,11 +91,6 @@ didApplyChangesWithPolygon:(nonnull SBSDKPolygon *)polygon
  **/
 @property(nonatomic, readonly, nonnull) UIImage *croppedImage;
 
-/** 
- The insets of the contents: image and handles. Defaults to (12, 12, 12, 12).
- **/
-@property(nonatomic, assign) UIEdgeInsets contentInsets;
-
 /** Delegate for result callback methods. **/
 @property(nonatomic, weak, nullable) id<SBSDKCropViewControllerDelegate> delegate;
 
@@ -112,14 +102,6 @@ didApplyChangesWithPolygon:(nonnull SBSDKPolygon *)polygon
  */
 - (nonnull instancetype)initWithParentViewController:(nonnull UIViewController *)parentViewController
                                        containerView:(nonnull UIView *)container;
-
-/**
- * Asks the controller to rotate input image
- * @param clockwise Define rotation direction
- * @param animated Show rotation animation
- **/
-- (void)rotateInputImageClockwise:(BOOL)clockwise
-                         animated:(BOOL)animated;
 
 @end
 

@@ -159,7 +159,14 @@ public class ScanbotSdkPlugin extends ScanbotCordovaPluginBase {
         }
 
         debugLog("Initializing Scanbot SDK ...");
-        cordova.getThreadPool().execute(new Runnable() {
+        cordova.getActivity().runOnUiThread(new Runnable() {
+            public void run() {
+
+                // The PdfSdk instance and its members must be created from the main (UI) thread!
+                // This is required by the native Scanbot SDK for Android.
+                final ScanbotSdkWrapper.PdfSdk pdfSdk = new ScanbotSdkWrapper.PdfSdk(cordova.getActivity());
+
+                cordova.getThreadPool().execute(new Runnable() {
                     public void run() {
                         try {
                             final String licenseKey = getJsonArg(args, "licenseKey", null);
@@ -180,27 +187,6 @@ public class ScanbotSdkPlugin extends ScanbotCordovaPluginBase {
 
                             initializer.initialize(app);
 
-                            prepareOcrBlobs(callbackContext, callbackMessage);
-                        } catch (final Exception e) {
-                            final String errorMsg = "Error initializing Scanbot SDK: " +  e.getMessage();
-                            errorLog(errorMsg, e);
-                            callbackContext.error(errorMsg);
-                        }
-                    }
-                });
-
-    }
-    
-    private void prepareOcrBlobs(final CallbackContext callbackContext, final String callbackMessage) {
-    	cordova.getActivity().runOnUiThread(new Runnable() {
-            public void run() {
-                // The PdfSdk instance and its members must be created from the main (UI) thread!
-                // This is required by the native Scanbot SDK for Android.
-                final ScanbotSdkWrapper.PdfSdk pdfSdk = new ScanbotSdkWrapper.PdfSdk(cordova.getActivity());
-
-                cordova.getThreadPool().execute(new Runnable() {
-                    public void run() {
-                        try {
                             sdkWrapper.prepareDefaultOcrBlobs(pdfSdk);
 
                             debugLog(callbackMessage);
@@ -213,9 +199,12 @@ public class ScanbotSdkPlugin extends ScanbotCordovaPluginBase {
                         }
                     }
                 });
+
             }
         });
+
     }
+
 
     private void documentDetection(final JSONObject args, final CallbackContext callbackContext) throws JSONException, IOException {
         final String imageFileUri = getImageFileUriArg(args);

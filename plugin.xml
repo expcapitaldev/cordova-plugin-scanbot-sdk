@@ -1,16 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <plugin xmlns="http://apache.org/cordova/ns/plugins/1.0"
         xmlns:android="http://schemas.android.com/apk/res/android"
-        id="cordova-plugin-scanbot-sdk" version="1.2.4">
+        id="cordova-plugin-scanbot-sdk" version="1.2.1">
 
   <name>Scanbot SDK Cordova Plugin</name>
   <description>Cordova Plugin for Scanbot SDK</description>
   <license></license>
   <keywords>scanbot,sdk,camera,scanner,scanning,document detection,edge detection,cropping,pdf,pdf creation,image optimization,image filter,ocr,optical character recognition,cordova,plugin</keywords>
-
-  <engines>
-    <engine name="cordova" version=">=6.0.0" />
-  </engines>
 
   <js-module src="www/ScanbotSdk.js" name="ScanbotSdk">
     <clobbers target="ScanbotSdk" />
@@ -31,10 +27,6 @@
         <param name="android-package" value="io.scanbot.sdk.plugin.cordova.ScanbotCameraPlugin"/>
       </feature>
     </config-file>
-
-    <edit-config file="AndroidManifest.xml" target="/manifest/application" mode="merge">
-      <application android:largeHeap="true" />
-    </edit-config>
 
     <config-file target="AndroidManifest.xml" parent="/manifest/application">
       <activity android:name="io.scanbot.sdk.plugin.cordova.ScanbotCameraActivity"
@@ -147,8 +139,8 @@
     <framework src="src/android/build-extras-sb.gradle" custom="true" type="gradleReference" />
 
     <!-- Dependencies (libs, frameworks, etc): -->
-    <framework src="io.scanbot:sdk-package-2:1.23.3" />
-    <framework src="com.android.support:appcompat-v7:25.3.1" />
+    <framework src="io.scanbot:sdk-package-2:1.22.6" />
+    <framework src="com.android.support:appcompat-v7:24+" />
   </platform>
 
 
@@ -176,7 +168,7 @@
     <header-file src="src/ios/SharedConfiguration.h" />
     <source-file src="src/ios/SharedConfiguration.m" />
     <header-file src="src/ios/LoggingUtils.h" />
-
+    
     <!-- Categories -->
     <header-file src="src/ios/Categories/SBSDKPolygon+JSON.h" target-dir="Categories" />
     <source-file src="src/ios/Categories/SBSDKPolygon+JSON.m" target-dir="Categories" />
@@ -191,11 +183,11 @@
     <resource-file src="src/ios/Images/ui_action_close/ui_action_close.png" />
     <resource-file src="src/ios/Images/ui_action_close/ui_action_close@2x.png" />
     <resource-file src="src/ios/Images/ui_action_close/ui_action_close@3x.png" />
-
+    
     <resource-file src="src/ios/Images/ui_action_checkmark/ui_action_checkmark.png" />
     <resource-file src="src/ios/Images/ui_action_checkmark/ui_action_checkmark@2x.png" />
     <resource-file src="src/ios/Images/ui_action_checkmark/ui_action_checkmark@3x.png" />
-
+    
     <resource-file src="src/ios/Images/ui_flash_on/ui_flash_on.png" />
     <resource-file src="src/ios/Images/ui_flash_on/ui_flash_on@2x.png" />
     <resource-file src="src/ios/Images/ui_flash_on/ui_flash_on@3x.png" />
@@ -207,25 +199,25 @@
     <resource-file src="src/ios/Images/ui_scan_handlebig/ui_scan_handlebig.png" />
     <resource-file src="src/ios/Images/ui_scan_handlebig/ui_scan_handlebig@2x.png" />
     <resource-file src="src/ios/Images/ui_scan_handlebig/ui_scan_handlebig@3x.png" />
-
+    
     <resource-file src="src/ios/Images/ui_scan_handlesmall/ui_scan_handlesmall.png" />
     <resource-file src="src/ios/Images/ui_scan_handlesmall/ui_scan_handlesmall@2x.png" />
     <resource-file src="src/ios/Images/ui_scan_handlesmall/ui_scan_handlesmall@3x.png" />
-
+    
     <resource-file src="src/ios/Images/ui_capture_edit_magnifier/ui_capture_edit_magnifier.png" />
     <resource-file src="src/ios/Images/ui_capture_edit_magnifier/ui_capture_edit_magnifier@2x.png" />
     <resource-file src="src/ios/Images/ui_capture_edit_magnifier/ui_capture_edit_magnifier@3x.png" />
-
+    
     <resource-file src="src/ios/Images/ui_autosnap_off/ui_autosnap_off.png" />
     <resource-file src="src/ios/Images/ui_autosnap_off/ui_autosnap_off@2x.png" />
     <resource-file src="src/ios/Images/ui_autosnap_off/ui_autosnap_off@3x.png" />
-
+    
     <resource-file src="src/ios/Images/ui_autosnap_on/ui_autosnap_on.png" />
     <resource-file src="src/ios/Images/ui_autosnap_on/ui_autosnap_on@2x.png" />
     <resource-file src="src/ios/Images/ui_autosnap_on/ui_autosnap_on@3x.png" />
-
+    
     <resource-file src="src/ios/Frameworks/SBSDKLanguageData/" />
-
+    
     <!-- Dependencies - frameworks: -->
     <framework src="src/ios/Frameworks/ScanbotSDK.framework" custom="true" embed="true" />
 
